@@ -1,0 +1,20 @@
+identifier: l496g_iot
+name: ST STM32L496G Iot
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gnuarmemb
+  - xtools
+ram: 320
+flash: 1024
+supported:
+  - arduino_i2c
+  - pwm
+  - i2c
+  - spi
+  - gpio
+  - counter
+  - sdhc
+  - adc
+  - can
