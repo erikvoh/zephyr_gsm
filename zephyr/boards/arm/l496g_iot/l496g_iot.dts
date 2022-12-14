@@ -54,6 +54,19 @@
 		};
 	};
 
+	gsm_gpios {
+		compatible = "gpio-leds";
+		modem_on: modem_pwr_en{
+			gpios = < &gpiod 3 GPIO_ACTIVE_HIGH>;
+			label = "GSM Modem power on pin";
+		};
+		sim_sel: sim_selection{
+			gpios = < &gpioc 2 GPIO_ACTIVE_HIGH>;
+			label = "GSM Modem sim select";
+		};
+
+	};
+
 	aliases {
 		led0 = &green_led_2;
 		sw0 = &joy_sel;
@@ -61,6 +74,8 @@
 		sw2 = &joy_right;
 		sw3 = &joy_up;
 		sw4 = &joy_left;
+		modemon = &modem_on;
+		simselect = &sim_sel;
 	};
 
 };
@@ -88,9 +103,19 @@
 };
 
 &usart1 {
-	pinctrl-0 = <&usart1_tx_pb6 &usart1_rx_pg10>;
+	pinctrl-0 = <&usart1_rx_pg10 &usart1_tx_pb6 &usart1_rts_pg12 &usart1_cts_pg11>;
 	current-speed = <115200>;
 	status = "okay";
+	// gsm: gsm-modem {
+	// 	compatible = "zephyr,gsm-ppp";
+	// 	label = "gsm_ppp";
+	// };
+
+	cellular: quectel_bg96 {
+		compatible = "zephyr,gsm-ppp";
+		label = "QUECTEL BG96";
+		status = "okay";
+	};
 };
 
 &usart2 {

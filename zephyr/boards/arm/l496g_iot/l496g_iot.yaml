@@ -18,3 +18,5 @@ supported:
   - sdhc
   - adc
   - can
+  - uart
+
